@@ -1,0 +1,215 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Cinemaster</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)=signout() >SignOut</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline">
+                <input #box class="form-control" type="text"
+              (keyup)="onNameKeyUp($event)" name="name" (keyup.enter)="onEnter(box.value)">
+                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+ -->
+<!-- Page Content -->
+<div class="container mt-5">
+
+  <div class="row">
+      <div class="col-md-8">
+
+      <div class="card my-4">
+        <h5 class="card-header">Create Post</h5>
+        <div class="card-body" style="display:block">
+          <div class="input-group" >
+              <textarea class="form-control" rows="3" [(ngModel)]="content">
+              </textarea>
+          </div>
+          <br>
+     
+          <div class="custom-file"> 
+
+          <input type="file" (change)="featuredPhotoSelected($event)" id="customFile">
+          <label class="custom-file-label" for="customFile">Upload image</label>
+
+          <!-- <input type="file" id="customFile"> -->
+          </div>
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="button"
+               (click)="create_post()">Post</button>
+            </span>
+        </div>
+      </div>
+      <hr>
+    <!-- Blog Entries Column -->
+
+      <h1 class="my-4">
+        <small>News Feed</small>
+      </h1>
+    <!-- <ng-container > -->
+      
+      <!-- Blog Post -->
+<!--     <ng-container *ngFor="let snap of data">
+
+      <div class="card mb-4">
+              <div class="card-body">
+                <h3>
+                  <a routerLink="#">{{snap.user_name}}
+                  </a>
+                </h3>  
+                <p class="card-text">
+                  {{snap.content}}
+                </p>
+              <ng-container *ngIf="snap.img_url != null">
+                <img class="card-img-top" [src]="snap.img_url" alt="Card image cap">
+              </ng-container>
+                <a href="#" class="btn btn-primary">Read More &rarr;</a>
+              </div>
+              <div class="card-footer text-muted">
+                  {{snap.time.toDate() |  date: 'dd-MM-yyyy' }}              
+              </div>
+       </div> 
+    </ng-container> -->      
+
+<!--- \\\\\\\Post-->
+<ng-container *ngFor="let snap of data">
+
+    <div class="card gedf-card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="mr-2">
+                        <img class="rounded-circle" width="45" [src]="snap.user_photoURL" alt="">
+                    </div>
+                    <div class="ml-2">
+                        <div class="h5 m-0">{{snap.user_name}}</div>
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{{snap.time.toDate() |  date: 'dd-MM-yyyy'}}              
+                        </div>
+           
+                        <!-- <div class="h7 text-muted">Miracles Lee Cross</div> -->
+                    </div>
+
+                </div>
+  
+            </div>
+
+        </div>
+        <div class="card-body">
+            
+  
+            <p class="card-text">
+                {{snap.content}}
+            </p>
+  <ng-container *ngIf="snap.img_url != null">
+            <img class="card-img-top" [src]="snap.img_url" alt="Card image cap">
+  </ng-container>
+            <div>
+            
+            <span class="badge badge-primary">Action</span>
+            <span class="badge badge-primary">Christian Bale</span>
+            <span class="badge badge-primary">Superhero</span>
+        </div>
+        </div>
+        <div class="card-footer">
+    <div *ngIf="like; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+    <a  href="#" (click)="liked()" class="card-link"><i class="fa fa-gittip"></i> Like</a> 
+    </ng-template>
+    <ng-template #elseBlock>
+    <a  href="#" (click)="liked()" class="card-link"><i class="fa fa-gittip"></i> Liked</a>
+    </ng-template>
+
+            <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+            <a href="#"  class="card-link float-right"><i class="fa fa-comment"></i> Spam Post</a>
+      
+        </div>
+     </div>
+    <br>
+ </ng-container>
+   
+                <!-- Post /////-->
+<!--     </ng-container>
+ -->    </div>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4">
+
+      <!-- Search Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Search your movie</h5>
+        <div class="card-body">
+          <div class="input-group">
+              <input #box class="form-control" type="text"
+              (keyup)="onNameKeyUp($event)" name="name" (keyup.enter)="onEnter(box.value)"><span class="input-group-btn">
+              <button class="btn btn-secondary" type="button"
+               (click)="onClick()">Search</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+<!--   <div class="row">
+  <input #box class="col-md-8 ml-2 form-control" type="text"
+  (keyup)="onNameKeyUp($event)" name="name" (keyup.enter)="onEnter(box.value)">
+  <br>
+  <button class="col-md-2 ml-5 btn btn-primary"
+        (click)="onClick()"  
+   >Send</button>
+</div> -->
+<!-- news article -->
+<h4>Articles For You</h4>
+    <ng-container *ngFor="let data of newsData">
+      <div class="card my-4" style="width: 18rem;">
+        <img [src]="data.urlToImage" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text"> {{data.title}} </p>
+            <h6>
+              <a href="#" class="primary stretched-link">read more..</a>
+            </h6>
+          </div>
+      </div>
+    </ng-container>
+    <br>
+
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+  </div>
+  <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<!-- <script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+
+>
+
